@@ -1,4 +1,4 @@
-# Nome do projeto
+# Rocketseat | Guia Estelar JavaScript
 
 > Estudos JavaScript introdutório
 
