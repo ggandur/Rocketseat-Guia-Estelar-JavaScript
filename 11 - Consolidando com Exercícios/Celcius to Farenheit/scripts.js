@@ -11,11 +11,11 @@ F = C * 9/5 + 32
 let temperature = "320F";
 
 function convert(temperatureValue) {
+  const shouldConvertToCelcius = temperatureValue.search("C") == -1;
   let convertedTemperature;
-  let numeralValue = temperatureValue;
-  numeralValue = Number(String(numeralValue).slice(0, -1));
+  let numeralValue = Number(String(temperatureValue).slice(0, -1));
 
-  if (temperatureValue.search("C") == -1) {
+  if (shouldConvertToCelcius) {
     numeralValue = ((numeralValue - 32) * 5) / 9;
     convertedTemperature = numeralValue + "C";
   } else {

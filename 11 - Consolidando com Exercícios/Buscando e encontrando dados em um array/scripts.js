@@ -9,7 +9,7 @@
 
 const booksByCategory = [
   {
-    category: "Riqueza",
+    categoryName: "Riqueza",
     books: [
       {
         title: "Os segredos da mente milionária",
@@ -26,7 +26,7 @@ const booksByCategory = [
     ],
   },
   {
-    category: "Inteligência Emocional",
+    categoryName: "Inteligência Emocional",
     books: [
       {
         title: "Você é Insubstituível",
@@ -48,10 +48,15 @@ function countNumberOfCategories(booksByCategoryArray) {
   return `O número de categorias é  ${booksByCategoryArray.length}`;
 }
 
+/*
+  Utilizando o for para iteração
+*/
+
+/*
 function countNumberOfBooksByCategory(booksByCategoryArray) {
   let message = "";
   for (i = 0; i < booksByCategoryArray.length; i++) {
-    message += `O número de livros da categoria  ${booksByCategoryArray[i].category} é ${booksByCategoryArray[i].books.length}\n`;
+    message += `O número de livros da categoria  ${booksByCategoryArray[i].categoryName} é ${booksByCategoryArray[i].books.length}\n`;
   }
   return message;
 }
@@ -89,6 +94,56 @@ function showBooksByAuthor(booksByCategoryArray, author) {
         : (message += "");
     }
   }
+  return message;
+}
+*/
+
+/*
+Utilizando o forEach para iteração
+*/
+
+function countNumberOfBooksByCategory(booksByCategoryArray) {
+  let message = "";
+  booksByCategoryArray.forEach((category) => {
+    message += `O número de livros da categoria  ${category.categoryName} é ${category.books.length}\n`;
+  });
+  return message;
+}
+
+function countNumberOfAuthors(booksByCategoryArray) {
+  let authors = [];
+  booksByCategoryArray.forEach((category) => {
+    category.books.forEach((book) => {
+      authorIncluded = authors.includes(book.author);
+      if (!authorIncluded) {
+        authors.push(book.author);
+      }
+    });
+  });
+  return `O número de autores é ${authors.length}`;
+}
+
+function showBooksByAugustoCury(booksByCategoryArray) {
+  let message = "O Autor possui os livros:\n";
+  booksByCategoryArray.forEach((category) => {
+    category.books.forEach((book) => {
+      book.author == "Augusto Cury"
+        ? (message += `- ${book.title}\n`)
+        : (message += "");
+    });
+  });
+  return message;
+}
+
+function showBooksByAuthor(booksByCategoryArray, author) {
+  let message = "O Autor possui os livros:\n";
+  booksByCategoryArray.forEach((category) => {
+    category.books.forEach((book) => {
+      book.author == author
+        ? (message += `- ${book.title}\n`)
+        : (message += "");
+    });
+  });
   return message;
 }
 
